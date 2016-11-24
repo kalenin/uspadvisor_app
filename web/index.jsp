@@ -1,3 +1,10 @@
+<%-- 
+    Document   : index
+    Created on : Nov 24, 2016, 11:29:27 AM
+    Author     : kalenin
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -48,8 +55,8 @@
 					<ul class="nav navbar-nav navbar-right">
 						<li class="scroll active"><a href="#navigation">Home</a></li>
 						<li class="scroll"><a href="#about-us">Sobre nós</a></li>
-						<li ><a href="teste.html">Cadastrar</a></li>
-						<li ><a href="teste.html">Entrar</a></li>
+						<li ><a href="reg.jsp">Cadastrar</a></li>
+						<li ><a href="loginform.jsp">Entrar</a></li>
 						<!-- <li class="scroll"><a href="#services">Services</a></li>
 						<li class="scroll"><a href="#our-team">Our Team</a></li>
 						<li class="scroll"><a href="#portfolio">Portfolio</a></li>
@@ -76,8 +83,8 @@
 						<div>
 							<h2 class="heading animated bounceInDown">USPAdvisor</h2>
 							<p class="animated bounceInUp">Avalie as matérias da USP</p>
-							<a class="btn btn-default slider-btn animated fadeIn" href="#">Cadastre-se</a>
-							<a class="btn btn-default slider-btn animated fadeIn" href="#">Entrar</a>
+							<a class="btn btn-default slider-btn animated fadeIn" href="reg.jsp">Cadastre-se</a>
+							<a class="btn btn-default slider-btn animated fadeIn" href="loginform.jsp">Entrar</a>
 						</div>
 					</div>
 				</div>
@@ -85,8 +92,8 @@
 					<div class="carousel-caption"> <div>
 						<h2 class="heading animated bounceInDown">Dê nota aos professores</h2>
 						<p class="animated bounceInUp"> Não se preocupe, é inteiramente anônimo </p>
-						<a class="btn btn-default slider-btn animated fadeIn" href="#">Cadastre-se</a>
-						<a class="btn btn-default slider-btn animated fadeIn" href="#">Entrar</a>
+						<a class="btn btn-default slider-btn animated fadeIn" href="reg.jsp">Cadastre-se</a>
+						<a class="btn btn-default slider-btn animated fadeIn" href="loginform.jsp">Entrar</a>
 					</div>
 				</div>
 			</div>
@@ -95,8 +102,8 @@
 					<div>
 						<h2 class="heading animated bounceInRight">Faça comentários sobre a disciplina</h2>
 						<p class="animated bounceInLeft">Elogie ou critique. A escolha é sua!</p>
-						<a class="btn btn-default slider-btn animated fadeIn" href="#">Cadastre-se</a>
-						<a class="btn btn-default slider-btn animated fadeIn" href="#">Entrar</a>
+						<a class="btn btn-default slider-btn animated fadeIn" href="reg.jsp">Cadastre-se</a>
+						<a class="btn btn-default slider-btn animated fadeIn" href="loginform.jsp">Entrar</a>
 					</div>
 				</div>
 			</div>
