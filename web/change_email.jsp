@@ -5,13 +5,18 @@
 --%>
 
 <%@ page import ="java.sql.*" %>
+<jsp:useBean id="dbParamData" class="dbParams.dbParamData" scope="session"/>
+<jsp:setProperty name="dbParamData" property="*"/>
+
 <%
+    String url = dbParamData.getUrl();
+    String uid = dbParamData.getUid();
+    String pwd = dbParamData.getPwd();
     Object userid = session.getAttribute("userid");    
     String emailNew = request.getParameter("email");
 
     Class.forName("com.mysql.jdbc.Driver");
-    Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/uspadvisor",
-            "root", "root");
+    Connection con = DriverManager.getConnection(url,uid, pwd);
     Statement st = con.createStatement();
     ResultSet rs;
     rs = st.executeQuery("select  id from students where num_usp='" + userid + "'");
@@ -21,9 +26,9 @@
 
         Integer i = st.executeUpdate("UPDATE students SET email = '"+ emailNew +"' where id='" + userId + "'");
         if( i > 0 ){
-            session.setAttribute("message", "Senha modificada com sucesso");
+            session.setAttribute("message", "Email alterado com sucesso");
         }else{
-            session.setAttribute("message", "Houve um erro ao modificar a senha");
+            session.setAttribute("message", "Houve um erro ao modificar o email");
         }
         response.sendRedirect("perfil.jsp");
 

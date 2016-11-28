@@ -5,12 +5,21 @@
 --%>
 
 <%@ page import ="java.sql.*" %>
+<jsp:useBean id="dbParamData" class="dbParams.dbParamData" scope="session"/>
+<jsp:setProperty name="dbParamData" property="*"/>
+
 <%
-    String userid = request.getParameter("uname");    
+    String url = dbParamData.getUrl();
+    String uid = dbParamData.getUid();
+    String pawd = dbParamData.getPwd();
+
+    String userid = request.getParameter("uname");         
     String pwd = request.getParameter("pass");
+    
     Class.forName("com.mysql.jdbc.Driver");
-    Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/uspadvisor",
-            "root", "root");
+    Connection con = DriverManager.getConnection(url,uid, pawd);
+    
+
     Statement st = con.createStatement();
     ResultSet rs;
     rs = st.executeQuery("select * from students where num_usp='" + userid + "' and password_hash='" + pwd + "'");

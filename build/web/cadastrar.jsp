@@ -1,20 +1,14 @@
-
-<%@ page import ="java.sql.*" %>
-
 <%-- 
-    Document   : perfil
-    Created on : 24/11/2016, 23:59:34
-    Author     : w
+    Document   : cadastrar.jsp
+    Created on : Nov 24, 2016, 9:49:01 AM
+    Author     : kalenin
 --%>
 
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<jsp:useBean id="students" class="Students.StudentsData" scope="session"/>
-<jsp:setProperty name="user" property="*"/>
 
-<jsp:useBean id="dbParamData" class="dbParams.dbParamData" scope="session"/>
-<jsp:setProperty name="dbParamData" property="*"/>
-
+<%@ page import ="java.sql.*" %>
+<jsp:useBean id="codigoMateria" class="codigoMateria.codigoMateriaData" scope="session"/>
+<jsp:setProperty name="codigoMateria" property="*"/>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -57,27 +51,16 @@
             if ((session.getAttribute("userid") == null) || (session.getAttribute("userid") == "")) {
                 response.sendRedirect("loginform.jsp");
             }else {
-                String url = dbParamData.getUrl();
-                String uid = dbParamData.getUid();
-                String pwd = dbParamData.getPwd();
 
-
-                Class.forName("com.mysql.jdbc.Driver");
-                Connection con = DriverManager.getConnection(url,uid, pwd);
-
-                Object userid = session.getAttribute("userid");
-                Statement st = con.createStatement();
-                ResultSet rs = null;
-                rs = st.executeQuery("SELECT * FROM students WHERE  num_usp='" + userid + "' LIMIT 1;");
         %>
         
         
-       <jsp:include page="layout.jsp" />
+        <jsp:include page="layout.jsp" />
 
             <div id="page-wrapper">
                 <div class="row">
                     <div class="col-lg-12">
-                        <h1 class="page-header">Dados do seu Perfil</h1>
+                        <h1 class="page-header">Alteração de email</h1>
                     </div>
                     <% if((session.getAttribute("message") != null) && (session.getAttribute("message") != "")) {
                         %> 
@@ -94,48 +77,49 @@
                     <div class="col-md-12">
                         <div class="panel panel-default">
                             <div class="panel-heading">
-                                <h3>Seus dados</h3>
+                                <h3>Cadastrar nova matéria</h3>
                             </div>
                             <div class="panel-body">
-                                <%
-                                    while(rs.next()){
-                                            
-                                %>
-                                <h4>Nome
-                                    <small><%= rs.getString(4) %></small>
-                                </h4>
-                                <h4>Número USP
-                                    <small><%= rs.getString(2) %></small>
-                                </h4>
-                                <h4>Ano de Ingresso
-                                    <small><%= rs.getString(3) %></small>
-                                </h4>
-                                <h4>Email
-                                    <small><%= rs.getString(5) %></small>
-                                </h4>
-                                <%}%>
+                                 
+                                <form action="cadastrando.jsp" method="POST">
+                                    <fieldset>
+                                        <div class="form-group">
+                                            <%
+                                                if(codigoMateria.getCodigoMateria() != null){
+                                                    %><input id="element_1" name="codigomat" type="text" maxlength="7" value="<%=codigoMateria.getCodigoMateria()%>" placeholder="Digite o código da Disciplina" class='form-control' autofocus/>
+                                            <%
+                                                }else{
+                                            %><input id="element_1" name="codigomat" type="text" maxlength="7" value="" placeholder="Digite o código da Disciplina" class='form-control' autofocus/>
+                                            <%}%>                                           
+                                                                                
+                                        </div>
+                                        <div class="form-group">
+                                            <input id="element_1" name="nomemat" type="text" maxlength="100" value="" placeholder="Digite o nome" class='form-control'/>                                    
+                                        </div>
+                                        <div class="form-group">
+                                            <input id="element_1" name="descricaomat" type="text" maxlength="5000" value="" placeholder="Descrição" class='form-control'/>                                    
+                                        </div>
+
+                   
+                                        
+                                        <!-- Change this to a button or input when using this as a form -->
+                                        <button class="btn btn-lg btn-success btn-block" type="Submit">Cadastrar</button>
+                                        
+                                    </fieldset>
+                                </form>
                             </div>
                             <!-- /.panel-body -->
-                        </div>
-                        <!-- /.panel -->
-                        <div>
-                            <p>
-                                <a href="alterar_email.jsp"><button type="button" class="btn btn-primary">Alterar Email</button></a>
-                                <a href="mudar_senha.jsp"><button type="button" class="btn btn-primary">Mudar Senha</button></a>
-                            </p>
-                        </div>
-                    </div>     
-                    <!-- /.panel-footer -->
-                </div>
-                <!-- /.panel .chat-panel -->
-            </div>
-            <!-- /.col-lg-4 -->
-        </div>
-        <!-- /.row -->
-    </div>
-    <!-- /#page-wrapper -->
 
-</div>
+                        
+                        <!-- /.panel .chat-panel -->
+                    </div>
+                    <!-- /.col-lg-4 -->
+                </div>
+                <!-- /.row -->
+            </div>
+            <!-- /#page-wrapper -->
+
+        </div>
 <!-- /#wrapper -->
 
 <!-- jQuery -->
