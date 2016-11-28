@@ -20,6 +20,7 @@
         //out.println("<a href='logout.jsp'>Log out</a>");
         response.sendRedirect("perfil.jsp");
     } else {
-        out.println("Invalid password <a href='loginform.jsp'>try again</a>");
+        session.setAttribute("message", "Houve um erro. Senha inválida ou usuário não encontrado");
+        response.sendRedirect("loginform.jsp");
     }
 %>

@@ -17,14 +17,16 @@
     ResultSet rs;
     rs = st.executeQuery("select password_hash, id from students where num_usp='" + userid + "'");
     if (rs.next()) {
-        if(rs.getString(1) != passOld){
+        if(!rs.getString(1).equals(passOld)){
+//            out.println( " " +passOld + "Invalid password <a href='loginform.jsp'>try again</a>");
+
             session.setAttribute("message", "Houve um erro: Senha antiga incorreta");
-            response.sendRedirect("perfil.jsp");
+            response.sendRedirect("mudar_senha.jsp");
         }else{
             String userId = rs.getString(2);
-            rs = null;
-            rs = st.executeQuery("UPDATE students SET password_hash = '"+ passNew +"' where id='" + userId + "'");
-            if(rs.next()){
+            
+            Integer i = st.executeUpdate("UPDATE students SET password_hash = '"+ passNew +"' where id='" + userId + "'");
+            if( i > 0 ){
                 session.setAttribute("message", "Senha modificada com sucesso");
             }else{
                 session.setAttribute("message", "Houve um erro ao modificar a senha");
@@ -35,7 +37,7 @@
     } else {
 //        out.println("Invalid password <a href='loginform.jsp'>try again</a>");
         session.setAttribute("message", "Houve um erro: Usuário não encontrado");
-        response.sendRedirect("perfil.jsp");
+        response.sendRedirect("mudar_senha.jsp");
 
     }
 %>

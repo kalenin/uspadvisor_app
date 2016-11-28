@@ -36,7 +36,16 @@
 
     
     <div class="container">
-        <div class="row">         
+        <div class="row">  
+            <% if((session.getAttribute("message") != null) && (session.getAttribute("message") != "")) {
+                        %> 
+                        <div>
+                            <h3><%=session.getAttribute("message") %></h3>
+                        </div>
+                    
+                    <% 
+                        session.setAttribute("message", null);
+                         }%>
             <div class="col-md-4 col-md-offset-4">
                 <div class="login-panel panel panel-default">
                     <div class="panel-heading">

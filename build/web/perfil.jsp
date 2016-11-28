@@ -108,6 +108,15 @@
                     <div class="col-lg-12">
                         <h1 class="page-header">Dados do seu Perfil</h1>
                     </div>
+                    <% if((session.getAttribute("message") != null) && (session.getAttribute("message") != "")) {
+                        %> 
+                        <div>
+                            <h3><%=session.getAttribute("message") %></h3>
+                        </div>
+                    
+                    <% 
+                        session.setAttribute("message", null);
+                         }%>
                     <!-- /.col-lg-12 -->
                 </div>
                 <div class="row">

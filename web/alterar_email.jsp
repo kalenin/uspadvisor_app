@@ -1,3 +1,9 @@
+<%-- 
+    Document   : alterar_email
+    Created on : Nov 28, 2016, 12:25:24 AM
+    Author     : kalenin
+--%>
+
 
 <%@ page import ="java.sql.*" %>
 
@@ -54,18 +60,6 @@
                 response.sendRedirect("loginform.jsp");
             }else {
 
-                ServletContext context = request.getSession().getServletContext();
-
-
-                Object userid = session.getAttribute("userid");
-            //     out.print("Registration Successfull!" + userid);
-
-                Class.forName("com.mysql.jdbc.Driver");
-                Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/uspadvisor",
-                        "root", "root");
-                Statement st = con.createStatement();
-                ResultSet rs = null;
-                rs = st.executeQuery("SELECT * FROM students WHERE  num_usp='" + userid + "' LIMIT 1;");
         %>
         
         
@@ -106,7 +100,7 @@
             <div id="page-wrapper">
                 <div class="row">
                     <div class="col-lg-12">
-                        <h1 class="page-header">Dados do seu Perfil</h1>
+                        <h1 class="page-header">Alteração de email</h1>
                     </div>
                     <% if((session.getAttribute("message") != null) && (session.getAttribute("message") != "")) {
                         %> 
@@ -123,36 +117,24 @@
                     <div class="col-md-12">
                         <div class="panel panel-default">
                             <div class="panel-heading">
-                                <h3>Seus dados</h3>
+                                <h3>Alteração de email</h3>
                             </div>
                             <div class="panel-body">
-                                <%
-                                    while(rs.next()){
-                                            
-                                %>
-                                <h4>Nome
-                                    <small><%= rs.getString(4) %></small>
-                                </h4>
-                                <h4>Número USP
-                                    <small><%= rs.getString(2) %></small>
-                                </h4>
-                                <h4>Ano de Ingresso
-                                    <small><%= rs.getString(3) %></small>
-                                </h4>
-                                <h4>Email
-                                    <small><%= rs.getString(5) %></small>
-                                </h4>
-                                <%}%>
+                                <form action="change_email.jsp" method="POST">
+                                    <fieldset>
+                                        <div class="form-group">
+                                            <input type="email" name="email" value="" placeholder="Digite seu novo email" class='form-control'autofocus/>                                    
+                                        </div>
+                                        
+                                        <!-- Change this to a button or input when using this as a form -->
+                                        <button class="btn btn-lg btn-success btn-block" type="Submit">Mudar email</button>
+                                        
+                                    </fieldset>
+                                </form>
                             </div>
                             <!-- /.panel-body -->
                         </div>
                         <!-- /.panel -->
-                        <div>
-                            <p>
-                                <a href="alterar_email.jsp"><button type="button" class="btn btn-primary">Alterar Email</button></a>
-                                <a href="mudar_senha.jsp"><button type="button" class="btn btn-primary">Mudar Senha</button></a>
-                            </p>
-                        </div>
                     </div>     
                     <!-- /.panel-footer -->
                 </div>
